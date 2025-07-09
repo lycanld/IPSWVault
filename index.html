@@ -50,6 +50,60 @@
       border-radius: 6px;
       transition: width 1.2s cubic-bezier(.4,1.6,.6,1);
     }
+    /* Popup overlay and modal */
+    #custom-popup {
+      position: fixed;
+      z-index: 10000;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    #custom-popup.active {
+      display: flex;
+    }
+    #custom-popup .popup-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(2.5px);
+      z-index: 0;
+    }
+    #custom-popup .popup-content {
+      position: relative;
+      z-index: 1;
+      background: #181a1b;
+      color: #fff;
+      border-radius: 1.1rem;
+      box-shadow: 0 8px 32px #000a, 0 1.5px 0 #fff1 inset;
+      padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+      min-width: 320px;
+      max-width: 90vw;
+      text-align: center;
+      margin: 0 auto;
+      font-family: inherit;
+      animation: popupIn 0.35s cubic-bezier(.4,1.6,.6,1);
+    }
+    #custom-popup .popup-content h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    #custom-popup .popup-content p {
+      margin: 1.1rem 0 1.7rem 0;
+      font-size: 1.05rem;
+      color: #e0e0e0;
+    }
+    #custom-popup .popup-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.7rem;
+    }
+    @keyframes popupIn {
+      from { transform: scale(0.92) translateY(30px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 
@@ -71,6 +125,23 @@
     Want your theme featured here? Just contact me!
   </footer>
 
+  <!-- Custom Popup Modal (single instance, with overlay) -->
+  <div id="custom-popup" style="display:none;">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <h2>Merging News: We're Joining Forces.</h2>
+      <p>
+        Lycan's IPSW Vault and <strong>ZanuZoss's NanoLib</strong> are teaming up to create the all-in-one platform for iPod nano 7G themes!<br><br>
+        Soon, you'll find even more themes, features—all in one place.<br><br>
+        Thank you for supporting this project. Stay tuned for my and our next big project!
+      </p>
+      <div class="popup-actions">
+        <button id="popup-close" class="button" style="margin-right:0.7rem;">Close</button>
+        <button id="popup-dont-show" class="button" style="background:#222;color:#fff;">Don't Notice Me Again</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       const boot = document.getElementById('boot-fake');
@@ -80,6 +151,18 @@
         boot.style.opacity = 0;
         setTimeout(() => boot.remove(), 400);
       }, 2000);
+      // Popup logic
+      const popup = document.getElementById('custom-popup');
+      if (!localStorage.getItem('ipswVaultPopupDismissed')) {
+        popup.style.display = 'flex';
+      }
+      document.getElementById('popup-close').onclick = function() {
+        popup.style.display = 'none';
+      };
+      document.getElementById('popup-dont-show').onclick = function() {
+        localStorage.setItem('ipswVaultPopupDismissed', '1');
+        popup.style.display = 'none';
+      };
     });
     fetch('themes.json')
       .then(response => response.json())
@@ -117,6 +200,27 @@
           `;
         });
       });
+
+    // Custom Popup Logic (centered, overlay, blur/darken)
+    const popup = document.getElementById('custom-popup');
+    function showPopup() {
+      popup.classList.add('active');
+    }
+    function hidePopup() {
+      popup.classList.remove('active');
+    }
+    if (!localStorage.getItem('ipswVaultPopupDismissed')) {
+      setTimeout(showPopup, 800);
+    }
+    document.getElementById('popup-close').onclick = hidePopup;
+    document.getElementById('popup-dont-show').onclick = function() {
+      localStorage.setItem('ipswVaultPopupDismissed', '1');
+      hidePopup();
+    };
+    // Also close popup if overlay is clicked
+    popup.querySelector('.popup-overlay').onclick = hidePopup;
   </script>
+</body>
+</html>
 </body>
 </html>
