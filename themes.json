@@ -1,9 +1,12 @@
 [
   {
     "name": "nanOS Pacific (Tanuki Edition)",
-    "author": "Lycan",
+    "author": {
+      "name": "Lycan",
+      "url": "https://github.com/lycanld"
+    },
     "device": "iPod nano 7G (2015)",
-    "themeType": "Light, Custom Wallpaper",
+    "themeType": "Light, Custom Wallpaper, Themed Icons, Themed Buttons",
     "release": "2015 (Modded Edition)",
     "special": "BNA Themed",
     "fileSize": "184 MB",
@@ -13,6 +16,25 @@
     },
     "description": "A vibrant, modern theme for the iPod nano 7G, featuring BNA mascot and a fresh Pacific-inspired color scheme. Includes custom light icons and subtle UI tweaks for a unique look and feel.",
     "previewImage": "assets/nanOS_Pacific_Tanuki/preview_1.png",
-    "downloadUrl": "IPSW/nanOS_Pacific_Tanuki/nanOS_Pacific_nano7_Light_Icons_2015(Lycan's%20Modded%20Edition).ipsw"
+    "downloadUrl": "https://github.com/lycanld/IPSWVault/releases/download/tanuki1/nanOS_Pacific_nano7_Light_Icons_2015.Lycan.s.Modded.Edition.ipsw"
+  },
+  {
+    "name": "Cat Theme - Nano 7",
+    "author": {
+      "name": "Braix (braixdragon)",
+      "url": "https://github.com/BraixDragon"
+    },
+    "device": "iPod nano 7G (2012/2015)",
+    "themeType": "Light/Dark, Custom Wallpaper, Themed Icons, Themed Buttons",
+    "release": "2012/2015",
+    "special": "Silly Cat Themed",
+    "fileSize": "184 MB",
+    "baseTheme": {
+      "name": "Stock 7G",
+      "url": "https://apple.com"
+    },
+    "description": "Badly made Cat theme :awesomecat:. 1 Wallpaper, Cool cat Icons, Even cooler Cat buttons for music",
+    "previewImage": "assets/BraixCat/preview_1.png",
+    "downloadUrl": "https://github.com/BraixDragon/BraixNano7Themes/releases/tag/6"
   }
 ]

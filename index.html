@@ -224,7 +224,7 @@
               <div class="theme-details">
                 <h2>${theme.name}</h2>
                 <ul style="list-style:none;padding:0;margin:0 0 1rem 0;font-size:1rem;line-height:1.7;">
-                  <li><strong>Author:</strong> ${theme.author}</li>
+                  <li><strong>Author:</strong> ${theme.author && theme.author.url ? `<a href="${theme.author.url}" target="_blank" style="color:#58a6ff;">${theme.author.name}</a>` : (theme.author?.name || theme.author)}</li>
                   <li><strong>Device:</strong> ${theme.device}</li>
                   <li><strong>Theme Type:</strong> ${theme.themeType}</li>
                   <li><strong>Release:</strong> ${theme.release}</li>
