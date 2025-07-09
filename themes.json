@@ -1,0 +1,18 @@
+[
+  {
+    "name": "nanOS Pacific (Tanuki Edition)",
+    "author": "Lycan",
+    "device": "iPod nano 7G (2015)",
+    "themeType": "Light, Custom Wallpaper",
+    "release": "2015 (Modded Edition)",
+    "special": "BNA Themed",
+    "fileSize": "184 MB",
+    "baseTheme": {
+      "name": "nanOS Pacific (By SlohBur)",
+      "url": "https://mega.nz/folder/idlGXYTZ#ciwOIKl9XNQT2Ov1jPw55g"
+    },
+    "description": "A vibrant, modern theme for the iPod nano 7G, featuring BNA mascot and a fresh Pacific-inspired color scheme. Includes custom light icons and subtle UI tweaks for a unique look and feel.",
+    "previewImage": "assets/nanOS_Pacific_Tanuki/preview_1.png",
+    "downloadUrl": "IPSW/nanOS_Pacific_Tanuki/nanOS_Pacific_nano7_Light_Icons_2015(Lycan's%20Modded%20Edition).ipsw"
+  }
+]

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPSWhat?</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #0d1117 0%, #232946 100%);
+      color: #c9d1d9;
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 20% 30%, #58a6ff33 0%, transparent 60%),
+                  radial-gradient(circle at 80% 70%, #f7816633 0%, transparent 60%);
+      animation: bgmove 12s linear infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes bgmove {
+      0% {
+        background-position: 20% 30%, 80% 70%;
+      }
+      100% {
+        background-position: 30% 40%, 70% 60%;
+      }
+    }
+
+    h1 {
+      color: #58a6ff;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    .theme-section {
+      margin: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .theme {
+      background: rgba(22, 27, 34, 0.95);
+      padding: 1.5rem 1rem 1rem 1rem;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px 0 #0006;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .theme-preview {
+      flex: 0 0 260px;
+      max-width: 260px;
+      border-radius: 0.7rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px 0 #0004;
+      background: #232946;
+      margin-bottom: 1rem;
+    }
+
+    .theme-details {
+      flex: 1 1 200px;
+      min-width: 200px;
+    }
+
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #f78166;
+    }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8b949e;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="assets/banner.png" alt="Banner" style="display:block;margin:2rem auto;max-width:100%;border-radius:0.5rem;" />
+  <h1>Lycan's IPSW Vault</h1>
+
+  <div class="theme-section" id="theme-section">
+    <!-- Themes will be loaded here by JavaScript -->
+  </div>
+
+  <footer>
+    &copy; 2025 Lycan • <a href="https://github.com/lycanld/My-IPSW-Themes" target="_blank">View on GitHub</a><br>
+    Want your theme featured here? Just contact me!
+  </footer>
+
+  <script>
+    fetch('themes.json')
+      .then(response => response.json())
+      .then(themes => {
+        const section = document.getElementById('theme-section');
+        section.innerHTML = '';
+        themes.forEach(theme => {
+          const baseThemeLink = theme.baseTheme && theme.baseTheme.url
+            ? `<a href="${theme.baseTheme.url}" target="_blank" style="color:#f78166;">${theme.baseTheme.name}</a>`
+            : (theme.baseTheme?.name || '');
+          section.innerHTML += `
+            <div class="theme">
+              <div class="theme-preview">
+                <img src="${theme.previewImage}" alt="${theme.name} Preview" style="width:100%;display:block;" />
+              </div>
+              <div class="theme-details">
+                <h2>${theme.name}</h2>
+                <ul style="list-style:none;padding:0;margin:0 0 1rem 0;font-size:1rem;line-height:1.7;">
+                  <li><strong>Author:</strong> ${theme.author}</li>
+                  <li><strong>Device:</strong> ${theme.device}</li>
+                  <li><strong>Theme Type:</strong> ${theme.themeType}</li>
+                  <li><strong>Release:</strong> ${theme.release}</li>
+                  <li><strong>Special:</strong> ${theme.special}</li>
+                  <li><strong>File Size:</strong> ${theme.fileSize}</li>
+                  <li><strong>Base Theme:</strong> ${baseThemeLink}</li>
+                </ul>
+                <p style="margin-bottom:1.2rem;">${theme.description}</p>
+                <p>
+                  <a href="${theme.downloadUrl}" download style="text-decoration:none;">
+                    <button class="button" style="vertical-align:middle"><span>Download</span></button>
+                  </a>
+                </p>
+  <style>
+    .button {
+      display: inline-block;
+      border-radius: 7px;
+      border: none;
+      background: linear-gradient(90deg, #58a6ff 0%, #232946 100%);
+      color: white;
+      font-family: inherit;
+      text-align: center;
+      font-size: 13px;
+      box-shadow: 0px 14px 56px -11px #58a6ff;
+      width: 10em;
+      padding: 1em;
+      transition: all 0.4s;
+      cursor: pointer;
+      margin-top: 0.5em;
+    }
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.4s;
+    }
+    .button span:after {
+      content: 'for free';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.7s;
+    }
+    .button:hover {
+      background: linear-gradient(90deg, #f78166 0%, #58a6ff 100%);
+      box-shadow: 0px 18px 56px -11px #f78166;
+    }
+    .button:hover span {
+      padding-right: 3.55em;
+    }
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+  </style>
+              </div>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
