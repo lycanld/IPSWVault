@@ -98,55 +98,6 @@
       position: relative;
       z-index: 1;
     }
-  </style>
-</head>
-<body>
-
-  <img src="assets/banner.png" alt="Banner" style="display:block;margin:2rem auto;max-width:100%;border-radius:0.5rem;" />
-  <h1>Lycan's IPSW Vault</h1>
-
-  <div class="theme-section" id="theme-section">
-    <!-- Themes will be loaded here by JavaScript -->
-  </div>
-
-  <footer>
-    &copy; 2025 Lycan • <a href="https://github.com/lycanld/My-IPSW-Themes" target="_blank">View on GitHub</a><br>
-    Want your theme featured here? Just contact me!
-  </footer>
-
-  <script>
-    fetch('themes.json')
-      .then(response => response.json())
-      .then(themes => {
-        const section = document.getElementById('theme-section');
-        section.innerHTML = '';
-        themes.forEach(theme => {
-          const baseThemeLink = theme.baseTheme && theme.baseTheme.url
-            ? `<a href="${theme.baseTheme.url}" target="_blank" style="color:#f78166;">${theme.baseTheme.name}</a>`
-            : (theme.baseTheme?.name || '');
-          section.innerHTML += `
-            <div class="theme">
-              <div class="theme-preview">
-                <img src="${theme.previewImage}" alt="${theme.name} Preview" style="width:100%;display:block;" />
-              </div>
-              <div class="theme-details">
-                <h2>${theme.name}</h2>
-                <ul style="list-style:none;padding:0;margin:0 0 1rem 0;font-size:1rem;line-height:1.7;">
-                  <li><strong>Author:</strong> ${theme.author}</li>
-                  <li><strong>Device:</strong> ${theme.device}</li>
-                  <li><strong>Theme Type:</strong> ${theme.themeType}</li>
-                  <li><strong>Release:</strong> ${theme.release}</li>
-                  <li><strong>Special:</strong> ${theme.special}</li>
-                  <li><strong>File Size:</strong> ${theme.fileSize}</li>
-                  <li><strong>Base Theme:</strong> ${baseThemeLink}</li>
-                </ul>
-                <p style="margin-bottom:1.2rem;">${theme.description}</p>
-                <p>
-                  <a href="${theme.downloadUrl}" download style="text-decoration:none;">
-                    <button class="button" style="vertical-align:middle"><span>Download</span></button>
-                  </a>
-                </p>
-  <style>
     .button {
       display: inline-block;
       border-radius: 7px;
@@ -178,7 +129,7 @@
       transition: 0.7s;
     }
     .button:hover {
-      background: linear-gradient(90deg, #f78166 0%, #58a6ff 100%);
+      background: linear-gradient(90deg, #0099ff 0%, #ff6933 100%);
       box-shadow: 0px 18px 56px -11px #f78166;
     }
     .button:hover span {
@@ -188,7 +139,105 @@
       opacity: 1;
       right: 0;
     }
+</style>
+  <style>
+    #boot-fake {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s;
+    }
+    #boot-fake img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2.5rem;
+      filter: drop-shadow(0 0 8px #fff8);
+      user-select: none;
+    }
+    #boot-fake .boot-bar {
+      width: 180px;
+      height: 10px;
+      background: #222;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px #000a;
+      position: relative;
+    }
+    #boot-fake .boot-bar-inner {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+      border-radius: 6px;
+      transition: width 1.2s cubic-bezier(.4,1.6,.6,1);
+    }
   </style>
+</head>
+
+<body>
+  <div id="boot-fake">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuSs8mVfEM_lPF0JSXjKHAU5XOBNhg1VE9ww&s" alt="Apple Logo" draggable="false" />
+    <div class="boot-bar"><div class="boot-bar-inner"></div></div>
+  </div>
+
+  <img src="assets/banner.png" alt="Banner" style="display:block;margin:2rem auto;max-width:100%;border-radius:0.5rem;" />
+  <h1>Lycan's IPSW Vault</h1>
+
+  <div class="theme-section" id="theme-section">
+    <!-- Themes will be loaded here by JavaScript -->
+  </div>
+
+  <footer>
+    &copy; 2025 Lycan • <a href="https://github.com/lycanld/My-IPSW-Themes" target="_blank">View on GitHub</a><br>
+    Want your theme featured here? Just contact me!
+  </footer>
+
+  <script>
+    // Fake Apple boot logo troll
+    window.addEventListener('DOMContentLoaded', function() {
+      const boot = document.getElementById('boot-fake');
+      const bar = boot.querySelector('.boot-bar-inner');
+      setTimeout(() => { bar.style.width = '100%'; }, 100);
+      setTimeout(() => {
+        boot.style.opacity = 0;
+        setTimeout(() => boot.remove(), 400);
+      }, 2000);
+    });
+    fetch('themes.json')
+      .then(response => response.json())
+      .then(themes => {
+        const section = document.getElementById('theme-section');
+        section.innerHTML = '';
+        themes.forEach(theme => {
+          const baseThemeLink = theme.baseTheme && theme.baseTheme.url
+            ? `<a href="${theme.baseTheme.url}" target="_blank" style="color:#f78166;">${theme.baseTheme.name}</a>`
+            : (theme.baseTheme?.name || '');
+          section.innerHTML += `
+            <div class="theme">
+              <div class="theme-preview">
+                <img src="${theme.previewImage}" alt="${theme.name} Preview" style="width:100%;display:block;" />
+              </div>
+              <div class="theme-details">
+                <h2>${theme.name}</h2>
+                <ul style="list-style:none;padding:0;margin:0 0 1rem 0;font-size:1rem;line-height:1.7;">
+                  <li><strong>Author:</strong> ${theme.author}</li>
+                  <li><strong>Device:</strong> ${theme.device}</li>
+                  <li><strong>Theme Type:</strong> ${theme.themeType}</li>
+                  <li><strong>Release:</strong> ${theme.release}</li>
+                  <li><strong>Special:</strong> ${theme.special}</li>
+                  <li><strong>File Size:</strong> ${theme.fileSize}</li>
+                  <li><strong>Base Theme:</strong> ${baseThemeLink}</li>
+                </ul>
+                <p style="margin-bottom:1.2rem;">${theme.description}</p>
+                <p>
+                  <a href="${theme.downloadUrl}" download style="text-decoration:none;">
+                    <button class="button" style="vertical-align:middle"><span>Download</span></button>
+                  </a>
+                </p>
               </div>
             </div>
           `;
